@@ -20,8 +20,9 @@ def classify(model_path, testing_data_path):
     labels_2 = ['CelebA_real_data', 'ProGAN_seed_0_generated_data ', 'ProGAN_seed_1_generated_data', 'ProGAN_seed_2_generated_data', 'ProGAN_seed_3_generated_data', 'ProGAN_seed_4_generated_data', 'ProGAN_seed_5_generated_data', 'ProGAN_seed_6_generated_data', 'ProGAN_seed_7_generated_data', 'ProGAN_seed_8_generated_data', 'ProGAN_seed_9_generated_data']
 
     print('Loading network...')
+    print('model Path', model_path, testing_data_path)
     C_im = misc.load_network_pkl(model_path)
-
+    print('C_im', C_im)
     if testing_data_path.endswith('.png') or testing_data_path.endswith('.jpg'):
         im = np.array(PIL.Image.open(testing_data_path)).astype(np.float32) / 255.0
         if len(im.shape) < 3:
