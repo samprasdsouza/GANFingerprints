@@ -99,7 +99,11 @@ def upscale2d_conv2d(x, fmaps, kernel, gain=np.sqrt(2), use_wscale=False):
 #----------------------------------------------------------------------------
 # upscale2d for RGB image by upsampling + Gaussian smoothing
 
-gaussian_filter_up = tf.constant(list(np.float32([1,4,6,4,1,4,16,24,16,4,6,24,36,24,6,4,16,24,16,4,1,4,6,4,1])/256.0*4.0), dtype=tf.float32, shape=[5,5,1,1], name='GaussianFilterUp', verify_shape=False)
+filter_values = np.float32([1,4,6,4,1,4,16,24,16,4,6,24,36,24,6,4,16,24,16,4,1,4,6,4,1])/256.0*4.0
+filter_values = filter_values.reshape([5,5,1,1])  # Reshape to match the desired shape
+gaussian_filter_up = tf.constant(filter_values, dtype=tf.float32, name='GaussianFilterUp')
+
+# gaussian_filter_up = tf.constant(list(np.float32([1,4,6,4,1,4,16,24,16,4,6,24,36,24,6,4,16,24,16,4,1,4,6,4,1])/256.0*4.0), dtype=tf.float32, shape=[5,5,1,1], name='GaussianFilterUp', verify_shape=False)
 
 def upscale2d_rgb_Gaussian(x, factor=2):
     assert isinstance(factor, int) and factor >= 1
