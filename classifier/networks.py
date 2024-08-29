@@ -150,7 +150,11 @@ def conv2d_downscale2d(x, fmaps, kernel, gain=np.sqrt(2), use_wscale=False):
 #----------------------------------------------------------------------------
 # downscale2d for RGB image by Gaussian smoothing + downsampling
 
-gaussian_filter_down = tf.constant(list(np.float32([1,4,6,4,1,4,16,24,16,4,6,24,36,24,6,4,16,24,16,4,1,4,6,4,1])/256.0), dtype=tf.float32, shape=[5,5,1,1], name='GaussianFilterDown', verify_shape=False)
+filter_values = np.float32([1,4,6,4,1,4,16,24,16,4,6,24,36,24,6,4,16,24,16,4,1,4,6,4,1])/256.0*4.0
+filter_values = filter_values.reshape([5,5,1,1])  # Reshape to match the desired shape
+gaussian_filter_up = tf.constant(filter_values, dtype=tf.float32, name='GaussianFilterUp')
+
+#gaussian_filter_down = tf.constant(list(np.float32([1,4,6,4,1,4,16,24,16,4,6,24,36,24,6,4,16,24,16,4,1,4,6,4,1])/256.0), dtype=tf.float32, shape=[5,5,1,1], name='GaussianFilterDown', verify_shape=False)
 
 def downscale2d_rgb_Gaussian(x, factor=2):
     assert isinstance(factor, int) and factor >= 1
