@@ -27,7 +27,12 @@ from __future__ import print_function
 
 import tensorflow as tf
 
-slim = tf.contrib.slim
+#now slim is available in tensorflow_addons
+import tensorflow_addons as tfa
+slim = tfa.layers
+
+#slim has been removed form tensorflow2.x
+#slim = tf.contrib.slim
 
 
 def block35(net, scale=1.0, activation_fn=tf.nn.relu, scope=None, reuse=None):
