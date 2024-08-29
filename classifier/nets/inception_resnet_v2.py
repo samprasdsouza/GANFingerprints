@@ -27,6 +27,7 @@ from __future__ import print_function
 
 import tensorflow as tf
 
+#now slim is available in keras of tensorflow
 from tensorflow.keras import layers as slim
 
 
@@ -374,7 +375,8 @@ def inception_resnet_v2_arg_scope(
     batch_norm_decay=0.9997,
     batch_norm_epsilon=0.001,
     activation_fn=tf.nn.relu,
-    batch_norm_updates_collections=tf.GraphKeys.UPDATE_OPS):
+    #batch_norm_updates_collections=tf.GraphKeys.UPDATE_OPS   //no needed in tf2
+    ):
   """Returns the scope with the default parameters for inception_resnet_v2.
 
   Args:
@@ -396,7 +398,7 @@ def inception_resnet_v2_arg_scope(
     batch_norm_params = {
         'decay': batch_norm_decay,
         'epsilon': batch_norm_epsilon,
-        'updates_collections': batch_norm_updates_collections,
+      #  'updates_collections': batch_norm_updates_collections, no need in tf2
         'fused': None,  # Use fused batch norm if possible.
     }
     # Set activation_fn and parameters for batch_norm.
