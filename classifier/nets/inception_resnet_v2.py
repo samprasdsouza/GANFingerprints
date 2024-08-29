@@ -27,9 +27,8 @@ from __future__ import print_function
 
 import tensorflow as tf
 
-#now slim is available in tensorflow_addons
-import tensorflow_addons as tfa
-slim = tfa.layers
+from tensorflow.keras import layers as slim
+
 
 #slim has been removed form tensorflow2.x
 #slim = tf.contrib.slim
