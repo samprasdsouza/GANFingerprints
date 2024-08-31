@@ -25,6 +25,7 @@ import legacy
 # older versions of the code.
 
 def load_pkl(filename):
+    print('loading pickle file -----', filename)
     with open(filename, 'rb') as file:
         return legacy.LegacyUnpickler(file, encoding='latin1').load()
 
@@ -298,6 +299,7 @@ def resume_kimg_time(network_pkl):
 # Loading and using trained networks.
 
 def load_network_pkl(run_id_or_result_subdir_or_network_pkl=None, snapshot=None):
+    print()
     return load_pkl(locate_network_pkl(run_id_or_result_subdir_or_network_pkl, snapshot))
 
 def random_latents(num_latents, E_zg, E_zl):

@@ -21,6 +21,7 @@ class LegacyUnpickler(pickle.Unpickler):
         super().__init__(*args, **kwargs)
 
     def find_class(self, module, name):
+        print('modeule-leagay', module)
         if module == 'network' and name == 'Network':
             return tfutil.Network
         return super().find_class(module, name)
