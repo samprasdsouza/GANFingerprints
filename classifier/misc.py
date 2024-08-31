@@ -27,6 +27,7 @@ import legacy
 def load_pkl(filename):
     print('loading pickle file -----', filename)
     with open(filename, 'rb') as file:
+        print('tesing', legacy.LegacyUnpickler(file, encoding='latin1'))
         return legacy.LegacyUnpickler(file, encoding='latin1').load()
 
 def save_pkl(obj, filename):
